@@ -17,7 +17,7 @@ if "initialized" not in st.session_state: ### IMPORTANT.
     memory = ConversationBufferWindowMemory(memory_key="chat_history", k=max_number_of_exchanges, return_messages=True)
 
     # LLM
-    chat = ChatOpenAI(openai_api_key=st.secrets["OpenAI_API_KEY], model=model_type)
+    chat = ChatOpenAI(openai_api_key=st.secrets["OpenAI_API_KEY"], model=model_type)
     
     # Now we add the memory object to the agent executor
     prompt = hub.pull("hwchase17/react-chat")
