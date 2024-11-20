@@ -18,6 +18,9 @@ if "initialized" not in st.session_state: ### IMPORTANT.
 
     # LLM
     chat = ChatOpenAI(openai_api_key=st.secrets["OpenAI_API_KEY"], model=model_type)
+
+    # tools
+    tools = []
     
     # Now we add the memory object to the agent executor
     prompt = hub.pull("hwchase17/react-chat")
