@@ -2,6 +2,7 @@ import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain import hub
 
 # Show title and description.
 st.title("💬 Chatbot")
