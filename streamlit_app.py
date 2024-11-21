@@ -39,7 +39,7 @@ if "memory" not in st.session_state: ### IMPORTANT.
 
 # Display the existing chat messages via `st.chat_message`.
 for message in st.session_state.memory.buffer:
-    if (msg.type in ["ai", "human"]):
+    if (message.type in ["ai", "human"]):
         with st.chat_message(message.type):
             st.markdown(message.content)
 
