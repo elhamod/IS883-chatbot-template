@@ -38,8 +38,8 @@ if "memory" not in st.session_state: ### IMPORTANT.
     st.session_state.agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory, stream_runnable=False, verbose= True)  # ### IMPORTANT to use st.session_state.memory and st.session_state.agent_executor.
 
 # Display the existing chat messages via `st.chat_message`.
+print(st.session_state.memory.buffer)
 for message in st.session_state.memory.buffer:
-    print(message.type, message.content)
     with st.chat_message(message.type):
         st.markdown(message.content)
 
