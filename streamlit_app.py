@@ -12,12 +12,12 @@ st.title("💬 Chatbot")
 ### Important part.
 # Create a session state variable to flag whether the app has been initialized.
 # This code will only be run first time the app is loaded.
-if "initialized" not in st.session_state: ### IMPORTANT.
+if memory not in st.session_state: ### IMPORTANT.
     model_type="gpt-4o-mini"
 
     # initialize the momory
     max_number_of_exchanges = 10
-    memory = ConversationBufferWindowMemory(memory_key="chat_history", k=max_number_of_exchanges, return_messages=True)
+    st.session_state.memory = ConversationBufferWindowMemory(memory_key="chat_history", k=max_number_of_exchanges, return_messages=True) ### IMPORTANT to use st.session_state.memory.
 
     # LLM
     chat = ChatOpenAI(openai_api_key=st.secrets["OpenAI_API_KEY"], model=model_type)
@@ -28,13 +28,10 @@ if "initialized" not in st.session_state: ### IMPORTANT.
     # Now we add the memory object to the agent executor
     prompt = hub.pull("hwchase17/react-chat")
     agent = create_tool_calling_agent(chat, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=memory, stream_runnable=False)  # , verbose= True
-
-    ### IMPORTANT.
-    st.session_state.initialized = True
+    agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory, stream_runnable=False)  # , verbose= True ### IMPORTANT to use st.session_state.memory.
 
 # Display the existing chat messages via `st.chat_message`.
-for message in memory.buffer:
+for message in st.session_state.memory.buffer:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
