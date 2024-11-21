@@ -48,15 +48,16 @@ if prompt := st.chat_input("What is up?"):
 
     # Store and display the current prompt.
     # st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
+    st.chat_message("user").write(prompt)
+        # st.markdown(prompt)
 
     # Generate a response using the OpenAI API.
     response = st.session_state.agent_executor.invoke({"input":prompt})['output']
     
     # Stream the response to the chat using `st.write_stream`, then store it in 
     # session state.
-    with st.chat_message("assistant"):
-        st.markdown(response)
+    st.chat_message("assistant").write(response)
+    # with st.chat_message("assistant"):
+    #     st.markdown(response)
         # response = st.write(response)
     # st.session_state.messages.append({"role": "assistant", "content": response})
