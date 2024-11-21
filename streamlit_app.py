@@ -35,7 +35,7 @@ if "memory" not in st.session_state: ### IMPORTANT.
     # Now we add the memory object to the agent executor
     prompt = hub.pull("hwchase17/react-chat")
     agent = create_react_agent(chat, tools, prompt)
-    st.session_state.agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory, stream_runnable=False)  # , verbose= True ### IMPORTANT to use st.session_state.memory and st.session_state.agent_executor.
+    st.session_state.agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory)  # , verbose= True ### IMPORTANT to use st.session_state.memory and st.session_state.agent_executor.
 
 # Display the existing chat messages via `st.chat_message`.
 for message in st.session_state.memory.buffer:
