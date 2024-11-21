@@ -43,7 +43,7 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
 
     # Generate a response using the OpenAI API.
-    response = st.session_state.agent_executor.invoke({"input":prompt})
+    response = st.session_state.agent_executor.invoke({"input":prompt})['output']
     
     # Stream the response to the chat using `st.write_stream`, then store it in 
     # session state.
