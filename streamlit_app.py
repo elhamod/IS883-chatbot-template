@@ -21,7 +21,7 @@ if "memory" not in st.session_state: ### IMPORTANT.
     chat = ChatOpenAI(openai_api_key=st.secrets["OpenAI_API_KEY"], model=model_type)
 
     # tools
-    from langchain.agents import AgentExecutor, create_tool_calling_agent, tool
+    from langchain.agents import tool
     from datetime import date
     @tool
     def datetoday() -> str:
