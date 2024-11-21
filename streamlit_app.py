@@ -24,10 +24,10 @@ if "memory" not in st.session_state: ### IMPORTANT.
     from langchain.agents import tool
     from datetime import date
     @tool
-    def datetoday() -> str:
+    def datetoday(dummy: str) -> str:
         """Returns today's date, use this for any \
         questions that need today's date to be answered. \
-        This tool takes no argumetns but returns a string with today's date.""" #This is the desciption the agent uses to determine whether to use the time tool.
+        This tool returns a string with today's date.""" #This is the desciption the agent uses to determine whether to use the time tool.
         return "Today is " + str(date.today())
 
     tools = [datetoday]
