@@ -21,7 +21,16 @@ if "memory" not in st.session_state: ### IMPORTANT.
     chat = ChatOpenAI(openai_api_key=st.secrets["OpenAI_API_KEY"], model=model_type)
 
     # tools
-    tools = []
+    from langchain.agents import AgentExecutor, create_tool_calling_agent, tool
+    from datetime import date
+    @tool
+    def datetoday() -> str:
+        """Returns today's date, use this for any \
+        questions that need today's date to be answered. \
+        This tool takes no argumetns but returns a string with today's date.""" #This is the desciption the agent uses to determine whether to use the time tool.
+        return "Today is " + str(date.today())
+
+    tools = [datetoday]
     
     # Now we add the memory object to the agent executor
     prompt = hub.pull("hwchase17/react-chat")
