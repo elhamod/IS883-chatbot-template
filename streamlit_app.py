@@ -26,7 +26,7 @@ if "memory" not in st.session_state: ### IMPORTANT.
     # Now we add the memory object to the agent executor
     prompt = hub.pull("hwchase17/react-chat")
     agent = create_tool_calling_agent(chat, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory, stream_runnable=False)  # , verbose= True ### IMPORTANT to use st.session_state.memory.
+    st.session_state.agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory, stream_runnable=False)  # , verbose= True ### IMPORTANT to use st.session_state.memory and st.session_state.agent_executor.
 
 # Display the existing chat messages via `st.chat_message`.
 for message in st.session_state.memory.buffer:
@@ -43,7 +43,7 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
 
     # Generate a response using the OpenAI API.
-    response = agent_executor.invoke({"input":prompt})
+    response = st.session_state.agent_executor.invoke({"input":prompt})
     
     # Stream the response to the chat using `st.write_stream`, then store it in 
     # session state.
