@@ -38,10 +38,9 @@ if "memory" not in st.session_state: ### IMPORTANT.
     st.session_state.agent_executor = AgentExecutor(agent=agent, tools=tools,  memory=st.session_state.memory, stream_runnable=False, verbose= True)  # ### IMPORTANT to use st.session_state.memory and st.session_state.agent_executor.
 
 # Display the existing chat messages via `st.chat_message`.
-# for message in st.session_state.memory.buffer:
-#     if (message.type in ["ai", "human"]):
-#         with st.chat_message(message.type):
-#             st.markdown(message.content)
+for message in st.session_state.memory.buffer:
+    if (message.type in ["ai", "human"]):
+        st.chat_message(message.type).write(message.content)
 
 # Create a chat input field to allow the user to enter a message. This will display
 # automatically at the bottom of the page.
