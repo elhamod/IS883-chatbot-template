@@ -4,8 +4,6 @@ from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain import hub
 
-global memory ### IMPORTANT.
-
 # Show title and description.
 st.title("💬 Chatbot")
 
