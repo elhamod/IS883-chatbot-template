@@ -11,7 +11,7 @@ st.title("💬 Chatbot")
 # Create a session state variable to flag whether the app has been initialized.
 # This code will only be run first time the app is loaded.
 if "memory" not in st.session_state: ### IMPORTANT.
-    model_type="gpt-4o-mini"
+    model_type="gpt-4o"
 
     # initialize the momory
     max_number_of_exchanges = 10
@@ -57,7 +57,7 @@ if prompt := st.chat_input("What is up?"):
     # Stream the response to the chat using `st.write_stream`, then store it in 
     # session state.
     st.chat_message("assistant").write(response)
-    st.write(st.session_state.memory.buffer)
+    # st.write(st.session_state.memory.buffer)
     # with st.chat_message("assistant"):
     #     st.markdown(response)
         # response = st.write(response)
