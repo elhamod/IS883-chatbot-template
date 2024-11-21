@@ -39,8 +39,8 @@ if "memory" not in st.session_state: ### IMPORTANT.
 
 # Display the existing chat messages via `st.chat_message`.
 for message in st.session_state.memory.buffer:
-    if (message.type in ["ai", "human"]):
-        st.chat_message(message.type).write(message.content)
+    # if (message.type in ["ai", "human"]):
+    st.chat_message(message.type).write(message.content)
 
 # Create a chat input field to allow the user to enter a message. This will display
 # automatically at the bottom of the page.
@@ -54,4 +54,4 @@ if prompt := st.chat_input("What is up?"):
 
     # response
     st.chat_message("assistant").write(response)
-    # st.write(st.session_state.memory.buffer)
+    st.write(st.session_state.memory.buffer)
