@@ -39,9 +39,9 @@ if "memory" not in st.session_state: ### IMPORTANT.
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", "You are a helpful assistant."),
-            ("placeholder", "{chat_history}"), #NEW: To retain chat message history.
+            ("placeholder", "{chat_history}"),
             ("human", "{input}"),
-            ("placeholder", "{agent_scratchpad}"), # To be used by the agent for intermediate tool operations.
+            ("placeholder", "{agent_scratchpad}"),
         ]
     )
     agent = create_tool_calling_agent(chat, tools, prompt)
@@ -64,4 +64,4 @@ if prompt := st.chat_input("What is up?"):
 
     # response
     st.chat_message("assistant").write(response)
-    st.write(st.session_state.memory.buffer)
+    # st.write(st.session_state.memory.buffer)
